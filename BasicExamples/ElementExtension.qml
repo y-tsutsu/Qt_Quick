@@ -17,4 +17,12 @@ Rectangle {
         font.pointSize: 32
         radius: 5
     }
+
+    MouseArea {
+        anchors.fill: parent
+
+        onClicked: {
+            text.lighter()
+        }
+    }
 }

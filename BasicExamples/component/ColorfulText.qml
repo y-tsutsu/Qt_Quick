@@ -14,4 +14,8 @@ Rectangle {
         anchors.centerIn: parent
         text: parent.text
     }
+
+    function lighter() {
+        color = Qt.lighter(color)
+    }
 }

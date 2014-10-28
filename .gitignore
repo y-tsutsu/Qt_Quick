@@ -28,3 +28,5 @@ obj/
 _ReSharper*/
 [Tt]est[Rr]esult*
 build-HelloWorld-Desktop_Qt_5_3_MSVC2013_64bit-Debug
+build-QGallery-Desktop_Qt_5_3_MSVC2013_64bit-Debug
+QGallery/media

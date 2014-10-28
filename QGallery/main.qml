@@ -28,7 +28,7 @@ ApplicationWindow {
         MouseArea {
             anchors.fill: parent
             onClicked: {
-                if (root.state === "playing") {
+                if (root.state == "playing") {
                     playAudio.pause()
                 } else {
                     playAudio.play()
@@ -39,7 +39,7 @@ ApplicationWindow {
         states: [
             State {
                 name: "playing"
-                when: playAudio.playbackState === Audio.PlayingState
+                when: playAudio.playbackState == Audio.PlayingState
                 PropertyChanges {
                     target: text
                     text: qsTr("Pause")

@@ -18,5 +18,6 @@
         <file>resources/icon_music_l.png</file>
         <file>resources/spin.png</file>
         <file>resources/star.png</file>
+        <file>Controller.qml</file>
     </qresource>
 </RCC>

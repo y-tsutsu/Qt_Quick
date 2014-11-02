@@ -5,8 +5,8 @@ import "components"
 
 ApplicationWindow {
     visible: true
-    width: 200
-    height: 200    
+    width: 360
+    height: 150
 
     Rectangle {
         id: root
@@ -19,45 +19,12 @@ ApplicationWindow {
             volume: 0.5
         }
 
-        Row {
+        Controller {
             anchors.centerIn: parent
-            spacing: 5
-
-            ImageButton {
-                id: buttonPlay
-                width: 70
-                height: 50
-                backImage: "qrc:/resources/button_border.png"
-                foreImage: "qrc:/resources/button_play.png"
-                onClicked: {
-                    if (root.state == "playing") {
-                        playAudio.pause()
-                    }
-                    else {
-                        playAudio.play()
-                    }
-                }
-            }
-
-            ImageButton {
-                id: buttonStop
-                width: 70
-                height: 50
-                backImage: "qrc:/resources/button_border.png"
-                foreImage: "qrc:/resources/button_stop.png"
-                onClicked: playAudio.stop()
-            }
+            playing: playAudio.playbackState == Audio.PlayingState
+            onPlayClicked: playAudio.play()
+            onPauseClicked: playAudio.pause()
+            onStopClicked: playAudio.stop()
         }
-
-        states: [
-            State {
-                name: "playing"
-                when: playAudio.playbackState == Audio.PlayingState
-                PropertyChanges {
-                    target: buttonPlay
-                    foreImage: "qrc:/resources/button_pause.png"
-                }
-            }
-        ]
     }
 }

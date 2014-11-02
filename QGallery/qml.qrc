@@ -1,5 +1,22 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
+        <file>components/ImageButton.qml</file>
+        <file>resources/button_border.png</file>
+        <file>resources/button_next.png</file>
+        <file>resources/button_pause.png</file>
+        <file>resources/button_play.png</file>
+        <file>resources/button_previous.png</file>
+        <file>resources/button_stop.png</file>
+        <file>resources/icon_folder.png</file>
+        <file>resources/icon_folder_l.png</file>
+        <file>resources/icon_image.png</file>
+        <file>resources/icon_image_l.png</file>
+        <file>resources/icon_move.png</file>
+        <file>resources/icon_move_l.png</file>
+        <file>resources/icon_music.png</file>
+        <file>resources/icon_music_l.png</file>
+        <file>resources/spin.png</file>
+        <file>resources/star.png</file>
     </qresource>
 </RCC>

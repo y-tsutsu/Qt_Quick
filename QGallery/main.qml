@@ -1,6 +1,7 @@
 import QtQuick 2.3
 import QtQuick.Controls 1.2
 import QtMultimedia 5.0
+import "components"
 
 ApplicationWindow {
     visible: true
@@ -12,27 +13,39 @@ ApplicationWindow {
         anchors.fill: parent
         color: "#222222"
 
-        Text {
-            id: text
-            anchors.centerIn: parent
-            text: qsTr("Play")
-            color: "#dddddd"
-        }
-
         Audio {
             id: playAudio
             source: "file:///C:/work/Qt_Quick/QGallery/media/music.mp3"
             volume: 0.5
         }
 
-        MouseArea {
-            anchors.fill: parent
-            onClicked: {
-                if (root.state == "playing") {
-                    playAudio.pause()
-                } else {
-                    playAudio.play()
+        Row {
+            anchors.centerIn: parent
+            spacing: 5
+
+            ImageButton {
+                id: buttonPlay
+                width: 70
+                height: 50
+                backImage: "qrc:/resources/button_border.png"
+                foreImage: "qrc:/resources/button_play.png"
+                onClicked: {
+                    if (root.state == "playing") {
+                        playAudio.pause()
+                    }
+                    else {
+                        playAudio.play()
+                    }
                 }
+            }
+
+            ImageButton {
+                id: buttonStop
+                width: 70
+                height: 50
+                backImage: "qrc:/resources/button_border.png"
+                foreImage: "qrc:/resources/button_stop.png"
+                onClicked: playAudio.stop()
             }
         }
 
@@ -41,8 +54,8 @@ ApplicationWindow {
                 name: "playing"
                 when: playAudio.playbackState == Audio.PlayingState
                 PropertyChanges {
-                    target: text
-                    text: qsTr("Pause")
+                    target: buttonPlay
+                    foreImage: "qrc:/resources/button_pause.png"
                 }
             }
         ]

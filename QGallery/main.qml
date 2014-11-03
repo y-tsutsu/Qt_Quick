@@ -6,7 +6,7 @@ import "components"
 ApplicationWindow {
     visible: true
     width: 360
-    height: 150
+    height: 400
 
     Rectangle {
         id: root
@@ -15,8 +15,8 @@ ApplicationWindow {
 
         Audio {
             id: playAudio
-            source: "file:///C:/work/Qt_Quick/QGallery/media/music.mp3"
             volume: 0.5
+            autoPlay: true
         }
 
         Information {
@@ -41,6 +41,7 @@ ApplicationWindow {
         }
 
         Controller {
+            id: controller
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: information.bottom
             anchors.margins: 10
@@ -48,6 +49,25 @@ ApplicationWindow {
             onPlayClicked: playAudio.play()
             onPauseClicked: playAudio.pause()
             onStopClicked: playAudio.stop()
+            onPreviousClicked: playAudio.source = contentsList.getPrevious()
+            onNextClicked: playAudio.source = contentsList.getNext()
+        }
+
+        ContentsList {
+            id: contentsList
+            anchors.top: controller.bottom
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.bottom: parent.bottom
+            anchors.margins: 10
+
+            onSelected: {
+                playAudio.source = filePath
+            }
+
+            Component.onCompleted: {
+                folder = "file:///m:/Music/"
+            }
         }
     }
 }

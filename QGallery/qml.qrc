@@ -21,5 +21,6 @@
         <file>Controller.qml</file>
         <file>Information.qml</file>
         <file>components/Slider.qml</file>
+        <file>ContentsList.qml</file>
     </qresource>
 </RCC>

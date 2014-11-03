@@ -32,6 +32,12 @@ ApplicationWindow {
 
             position: playAudio.position
             duration: playAudio.duration
+
+            onPositionRequested: {
+                if (playAudio.playbackState === Audio.PlayingState) {
+                    playAudio.seek(position)
+                }
+            }
         }
 
         Controller {

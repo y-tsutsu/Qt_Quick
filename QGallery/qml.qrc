@@ -19,5 +19,6 @@
         <file>resources/spin.png</file>
         <file>resources/star.png</file>
         <file>Controller.qml</file>
+        <file>Information.qml</file>
     </qresource>
 </RCC>

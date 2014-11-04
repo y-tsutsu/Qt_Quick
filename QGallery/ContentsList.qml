@@ -1,6 +1,6 @@
 import QtQuick 2.0
 import QtMultimedia 5.0
-import Qt.labs.folderlistmodel 1.0
+import Qt.labs.folderlistmodel 2.1
 
 ListView {
     id: root
@@ -12,7 +12,7 @@ ListView {
     signal selected(string filePath, int type)
 
     property var suffix2Type: {
-        "mp3" : 1, "m4a" : 1, "wma" : 1
+        "mp3" : 1, "m4a" : 1, "wma" : 1, "MP3" : 1, "M4A" : 1, "WMA" : 1
     }
 
     model: FolderListModel {
@@ -51,7 +51,7 @@ ListView {
             var len = fileTypes.length
             if (len === 0 || len === 1) return ""
 
-            return fileTypes[len - 1].toLowerCase()
+            return fileTypes[len - 1]
         }
 
         onClicked: {

@@ -22,5 +22,6 @@
         <file>Information.qml</file>
         <file>components/Slider.qml</file>
         <file>ContentsList.qml</file>
+        <file>VideoView.qml</file>
     </qresource>
 </RCC>

@@ -26,16 +26,16 @@ ApplicationWindow {
             anchors.right: parent.right
             anchors.margins: 10
 
-            title: toStr(playAudio.metaData.title)
-            artist: toStr(playAudio.metaData.author)
-            album: toStr(playAudio.metaData.albumTitle)
+            title: toStr(controller.player.metaData.title)
+            artist: toStr(controller.player.metaData.author)
+            album: toStr(controller.player.metaData.albumTitle)
 
-            position: playAudio.position
-            duration: playAudio.duration
+            position: controller.player.position
+            duration: controller.player.duration
 
             onPositionRequested: {
-                if (playAudio.playbackState === Audio.PlayingState) {
-                    playAudio.seek(position)
+                if (controller.player.playbackState === Audio.PlayingState && controller.player.seekable) {
+                    controller.player.seek(position)
                 }
             }
         }
@@ -45,12 +45,16 @@ ApplicationWindow {
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: information.bottom
             anchors.margins: 10
-            playing: playAudio.playbackState === Audio.PlayingState
-            onPlayClicked: playAudio.play()
-            onPauseClicked: playAudio.pause()
-            onStopClicked: playAudio.stop()
-            onPreviousClicked: playAudio.source = contentsList.getPrevious()
-            onNextClicked: playAudio.source = contentsList.getNext()
+
+            property var player: playAudio
+
+            playing: player.playbackState === Audio.PlayingState
+
+            onPlayClicked: player.play()
+            onPauseClicked: player.pause()
+            onStopClicked: player.stop()
+            onPreviousClicked: player.source = contentsList.getPrevious()
+            onNextClicked: player.source = contentsList.getNext()
         }
 
         ContentsList {
@@ -62,12 +66,36 @@ ApplicationWindow {
             anchors.margins: 10
 
             onSelected: {
-                playAudio.source = filePath
+                setContent(filePath, type)
             }
 
             Component.onCompleted: {
-                folder = "file:///m:/Music/"
+                folder = "file:///m:/"
             }
+
+            function setContent(path, type) {
+                playAudio.stop()
+                playVideo.stop()
+
+                if (type === 1) {
+                    controller.player = playAudio
+                    playAudio.source = path
+                }
+                else if (type === 2) {
+                    controller.player = playVideo
+                    playVideo.source = path
+                }
+            }
+        }
+
+        VideoView {
+            id: playVideo
+            anchors.top: controller.bottom
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.bottom: parent.bottom
+            anchors.margins: 10
+            visible: false
         }
     }
 }
